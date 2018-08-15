@@ -23,13 +23,14 @@ driver.get(targetChapUrl)
 
 html = driver.page_source
 
+# ToDo: make this driver independent, use beautifulSoup instead
 # get img urls and save it locally 
 imgElms = driver.find_elements_by_tag_name('img')
+driver.quit()
+
 for ie in imgElms:
     imgUrl = ie.get_attribute('src') 
     print(imgUrl) 
     if len(imgUrl) < 255:
         urllib.urlretrieve(imgUrl, os.path.basename(imgUrl) )
-
-driver.quit()
 
